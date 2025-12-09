@@ -1,0 +1,116 @@
+/* Import de la police Google Fonts "Poppins" avec toutes les variantes de poids */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Réinitialisation globale : supprime les marges et paddings par défaut de tous les éléments */
+* { 
+    padding: 0;
+    margin: 0;
+}
+
+/* Styles du body : définit la police par défaut pour toute la page */
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Container principal : gère l'arrière-plan et le positionnement du contenu */
+.container {
+    background-color: #000;  /* Couleur de fond noir (fallback si l'image ne charge pas) */
+    background-image: url('./assets/background.jpg');  /* Image d'arrière-plan */
+    background-size: cover;  /* L'image couvre tout le container */
+    background-repeat: no-repeat;  /* Évite la répétition de l'image */
+    background-attachment: fixed;  /* L'arrière-plan reste fixe lors du scroll */
+    height: 100vh;  /* Hauteur égale à 100% de la hauteur de la fenêtre */
+    display: flex;  /* Active flexbox pour centrer le contenu */
+    justify-content: center;  /* Centre horizontalement */
+    align-items: center;  /* Centre verticalement */
+    font-size: 3rem;  /* Taille de police de base */
+    position: relative;  /* Position relative pour les enfants absolus */
+    color: #FFF;  /* Couleur de texte blanc */
+    z-index: -2;  /* Place le container derrière l'overlay */
+}
+
+/* Pseudo-élément ::after : crée un overlay sombre sur l'arrière-plan */
+.container::after {
+    content: '';  /* Nécessaire pour afficher le pseudo-élément */
+    position: absolute;  /* Positionnement absolu par rapport au container */
+    inset: 0;  /* Raccourci pour top:0, right:0, bottom:0, left:0 */
+    background-color: rgba(0, 0, 0, 0.65);  /* Noir avec 65% d'opacité */
+    z-index: -1;  /* Place l'overlay entre le background et le contenu */
+}
+
+/* Wrapper : conteneur pour le contenu principal (date, météo) */
+.wrapper {
+    z-index: 1;  /* S'assure que le contenu est au-dessus de l'overlay */
+    text-align: center;  /* Centre le texte horizontalement */
+}
+
+/* Formulaire de recherche : positionné en haut à gauche */
+form {
+    position: absolute;  /* Positionnement absolu par rapport au container */
+    top: 0px;  /* Aligné en haut */
+    left: 0px;  /* Aligné à gauche */
+    z-index: 100;  /* S'assure que le formulaire est au-dessus de tout */
+    display: flex;  /* Active flexbox pour aligner les éléments */
+    gap: 10px;  /* Espace de 10px entre les éléments du formulaire */
+}
+
+/* Classe utilitaire pour cacher des éléments (ex: label pour accessibilité) */
+.hidden {
+    display: none;
+}
+
+/* Bouton de soumission du formulaire */
+.btn-submit {
+    padding: 10px;  /* Espacement interne */
+    background-color: #007BFF;  /* Couleur bleue */
+    color: white;  /* Texte blanc */
+    border: none;  /* Supprime la bordure par défaut */
+    border-radius: 5px;  /* Coins arrondis */
+    cursor: pointer;  /* Change le curseur au survol */
+}
+
+/* État hover du bouton : change la couleur au survol */
+.btn-submit:hover {
+    background-color: #0056b3;  /* Bleu plus foncé */
+}
+
+/* Champ de recherche (input) */
+input[type="search"] {
+    padding: 5px;  /* Espacement interne */
+    border: 1px solid #ccc;  /* Bordure grise claire */
+    border-radius: 5px;  /* Coins arrondis */
+    font-size: 1rem;  /* Taille de police standard */
+}
+
+/* Container météo : affiche la température et la description côte à côte */
+.weather-container {
+    display: flex;  /* Active flexbox */
+    align-items: center;  /* Aligne verticalement au centre */
+    font-size: 1rem;  /* Taille de police de base */
+    gap: 20px;  /* Espace de 20px entre température et description */
+}
+
+/* Affichage de la température */
+.temperature {
+    font-size: 5rem;  /* Grande taille pour la température */
+    font-weight: 600;  /* Police semi-bold */
+    margin-left: 20px;  /* Marge à gauche */
+}
+
+/* Description météo (ville et pays) */
+.weather-description {
+    font-size: 1.5rem;  /* Taille de police moyenne */
+    text-align: left;  /* Alignement à gauche */
+}
+
+/* En-tête contenant le jour et la date */
+.header {
+    margin-bottom: 100px;  /* Espace important sous l'en-tête */
+}
+
+/* Paragraphe dans l'en-tête (date) */
+.header p {
+    font-size: 2rem;  /* Taille de police pour la date */
+}

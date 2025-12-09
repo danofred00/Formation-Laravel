@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API JS</title>
+    <!-- Lien vers la feuille de style CSS -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- Container principal : contient l'arrière-plan et tout le contenu de l'application -->
+    <div class="container">
+        
+        <!-- Wrapper : enveloppe le contenu principal (date, température, localisation) -->
+        <div class="wrapper">
+            
+            <!-- En-tête : affiche le jour et la date actuelle -->
+            <div class="header">
+                <!-- Titre affichant le jour de la semaine (mis à jour par JavaScript) -->
+                <h1 id="day">FRIDAY</h1>
+                <!-- Paragraphe affichant la date complète (mis à jour par JavaScript) -->
+                <p id="date">10 Septembre 2025</p>
+            </div>
+            
+            <!-- Container météo : affiche la température et la localisation -->
+            <div class="weather-container">
+                <!-- Affichage de la température -->
+                <p class="temperature">
+                    <!--Span qui contiendra la valeur de température (mis à jour par JavaScript) -->
+                    <span id="temperature">00</span>
+                    °C
+                </p>
+                
+                <!-- Description météo : ville et pays -->
+                <div class="weather-description">
+                    <!-- Paragraphe pour le nom de la ville (mis à jour par l'API) -->
+                    <p class="city">Yaounde</p>
+                    <!-- Paragraphe pour le pays (mis à jour par l'API) -->
+                    <p class="country">Centre, Cameroun</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulaire de recherche de ville -->
+        <!-- onsubmit appelle la fonction handleFormSubmit définie dans script.js -->
+        <form onsubmit="handleFormSubmit(event)">
+            <div>
+                <!-- Label caché pour l'accessibilité -->
+                <label for="city-input" class="hidden">City Name</label>
+                
+                <!-- Champ de recherche pour saisir le nom de la ville -->
+                <!-- type="search" : affiche une icône de recherche sur certains navigateurs -->
+                <!-- name="q" : nom utilisé pour récupérer la valeur avec FormData -->
+                <!-- required : rend le champ obligatoire avant soumission -->
+                <input type="search" name="q" id="city-input" placeholder="Nom de la ville" required>
+                
+                <!-- Champ caché contenant la clé d'API WeatherAPI -->
+                <!-- IMPORTANT : En production, ne jamais exposer la clé API côté client -->
+                <input type="hidden" name="key" value="dd90e727226c4792b7e180241250912">
+            </div>
+            
+            <div>
+                <!-- Bouton de soumission du formulaire -->
+                <button type="submit" class="btn-submit">Soumettre</button>
+            </div>
+        </form>
+
+    </div>
+    
+    <!-- Lien vers le fichier JavaScript contenant la logique de l'application -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
