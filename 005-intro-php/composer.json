@@ -1,0 +1,13 @@
+{
+    "name": "danofred00/005-intro-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Leussa",
+            "email": "leussadaniel04@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^7.0"
+    }
+}
