@@ -1,0 +1,777 @@
+/**
+ * ========================================
+ * FEUILLE DE STYLES - style.css
+ * ========================================
+ * 
+ * Ce fichier contient tous les styles visuels du site portfolio.
+ * CSS = Cascading Style Sheets (Feuilles de style en cascade)
+ * 
+ * STRUCTURE DU FICHIER :
+ * 1. Reset et styles globaux
+ * 2. Header et navigation
+ * 3. Section Hero (bannière)
+ * 4. Sections générales
+ * 5. Compétences
+ * 6. Projets
+ * 7. Formulaire de contact
+ * 8. Footer
+ * 9. Responsive design (média queries)
+ * 10. Styles personnalisés additionnels
+ */
+
+/* ========================================
+   1. RESET ET STYLES GLOBAUX
+   ======================================== */
+
+/**
+ * SÉLECTEUR UNIVERSEL (*)
+ * Applique les styles à TOUS les éléments HTML
+ * 
+ * Ces propriétés créent une base uniforme sur tous les navigateurs
+ */
+* {
+    /* 
+     * margin: 0 - Supprime les marges extérieures par défaut
+     * Par défaut, les navigateurs ajoutent des marges aux éléments
+     */
+    margin: 0;
+
+    /* 
+     * padding: 0 - Supprime les marges intérieures par défaut
+     */
+    padding: 0;
+
+    /* 
+     * box-sizing: border-box - Change le mode de calcul des dimensions
+     * 
+     * SANS border-box : width = contenu uniquement
+     * AVEC border-box : width = contenu + padding + bordure
+     * 
+     * Exemple : Un élément de 300px avec 20px de padding :
+     * - content-box (défaut) : largeur totale = 340px (300 + 20 + 20)
+     * - border-box : largeur totale = 300px (le padding est inclus)
+     */
+    box-sizing: border-box;
+
+    /* 
+     * scroll-behavior: smooth - Défilement fluide et animé
+     * Quand on clique sur un lien #ancre, le scroll est progressif
+     * au lieu d'un saut instantané
+     */
+    scroll-behavior: smooth;
+}
+
+/**
+ * STYLES DE LA BALISE BODY
+ * S'applique à tout le contenu visible de la page
+ */
+body {
+    /* 
+     * font-family - Famille de polices (fonts)
+     * Si Arial n'est pas disponible, le navigateur utilise sans-serif
+     * 
+     * TYPES DE POLICES :
+     * - serif : avec empattements (Times New Roman)
+     * - sans-serif : sans empattements (Arial, Helvetica)
+     * - monospace : largeur fixe (Courier, pour du code)
+     */
+    font-family: Arial, sans-serif;
+
+    /* 
+     * line-height - Hauteur de ligne (interligne)
+     * 1.6 = 160% de la taille de la police
+     * Améliore la lisibilité en espaçant les lignes de texte
+     */
+    line-height: 1.6;
+
+    /* 
+     * color - Couleur du texte
+     * #333 = gris très foncé (hexadécimal)
+     * Format : #RRGGBB (Rouge, Vert, Bleu)
+     */
+    color: #333;
+}
+
+/**
+ * CLASSE CONTAINER
+ * Conteneur centré avec largeur maximale
+ * Utilisé pour centrer le contenu et éviter qu'il soit trop large
+ */
+.container {
+    /* 
+     * max-width - Largeur maximale
+     * Le contenu ne dépassera jamais 1200px de large
+     * Sur les petits écrans, il prendra 100% de la largeur
+     */
+    max-width: 1200px;
+
+    /* 
+     * margin: 0 auto - Centre horizontalement
+     * 0 = pas de marge en haut et bas
+     * auto = marges gauche/droite calculées automatiquement (centrage)
+     */
+    margin: 0 auto;
+
+    /* 
+     * padding - Marge intérieure
+     * Crée de l'espace entre le bord et le contenu
+     */
+    padding: 20px;
+}
+
+/* ========================================
+   2. HEADER ET NAVIGATION
+   ======================================== */
+/* ========================================
+   2. HEADER ET NAVIGATION
+   ======================================== */
+
+/**
+ * BALISE HEADER
+ * Barre de navigation en haut du site
+ */
+header {
+    /* 
+     * background-color - Couleur de fond
+     * #2c3e50 = bleu-gris foncé
+     */
+    background-color: #2c3e50;
+
+    /* Couleur du texte */
+    color: white;
+
+    /* 
+     * padding: 1rem 0 - Marges intérieures
+     * 1rem en haut et en bas, 0 à gauche et à droite
+     * 
+     * REM vs PX vs EM :
+     * - px : pixels, taille fixe
+     * - em : relatif à la taille de police du parent
+     * - rem : relatif à la taille de police racine (html)
+     * 1rem = généralement 16px par défaut
+     */
+    padding: 1rem 0;
+
+    /* 
+     * position: sticky - Position "collante"
+     * L'élément reste fixé en haut lors du scroll
+     * Combine normal flow + fixed positioning
+     */
+    position: sticky;
+
+    /* 
+     * top: 0 - Distance par rapport au haut
+     * Nécessaire avec sticky/fixed
+     */
+    top: 0;
+
+    /* 
+     * z-index - Ordre d'empilement (profondeur)
+     * Plus le nombre est élevé, plus l'élément est "devant"
+     * 100 garantit que le header reste au-dessus des autres éléments
+     */
+    z-index: 100;
+}
+
+/**
+ * BALISE NAV
+ * Conteneur de la navigation
+ */
+nav {
+    /* 
+     * display: flex - Active Flexbox
+     * Flexbox = système de mise en page flexible et puissant
+     * Permet d'aligner facilement des éléments en ligne ou colonne
+     */
+    display: flex;
+
+    /* 
+     * justify-content: space-between
+     * Répartit l'espace entre les éléments
+     * Le premier élément à gauche, le dernier à droite
+     * 
+     * AUTRES VALEURS :
+     * - flex-start : tout à gauche
+     * - flex-end : tout à droite
+     * - center : centré
+     * - space-around : espace autour de chaque élément
+     */
+    justify-content: space-between;
+
+    /* 
+     * align-items: center
+     * Aligne verticalement au centre
+     */
+    align-items: center;
+
+    /* Largeur max et centrage */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/**
+ * LISTE DE NAVIGATION
+ * Liste des liens du menu
+ */
+nav ul {
+    /* Flexbox pour aligner les liens horizontalement */
+    display: flex;
+
+    /* 
+     * list-style: none
+     * Supprime les puces (•) de la liste
+     */
+    list-style: none;
+
+    /* 
+     * gap: 2rem
+     * Espace entre chaque élément de la liste
+     * Propriété moderne, plus simple que margin
+     */
+    gap: 2rem;
+}
+
+/**
+ * LIENS DE NAVIGATION
+ */
+nav a {
+    color: white;
+
+    /* 
+     * text-decoration: none
+     * Supprime le soulignement des liens
+     */
+    text-decoration: none;
+
+    /* 
+     * transition - Animation de propriété
+     * transition: propriété durée
+     * Anime le changement de couleur sur 0.3 secondes
+     */
+    transition: color 0.3s;
+}
+
+/**
+ * PSEUDO-CLASSE :hover
+ * S'applique quand la souris survole l'élément
+ */
+nav a:hover {
+    /* Changement de couleur au survol */
+    color: #3498db;
+}
+
+/* ========================================
+   3. SECTION HERO (Bannière)
+   ======================================== */
+/* ========================================
+   3. SECTION HERO (Bannière)
+   ======================================== */
+
+/**
+ * SECTION HERO
+ * Grande bannière colorée en haut de la page d'accueil
+ */
+#hero {
+    /* 
+     * background: linear-gradient - Dégradé de couleurs
+     * 
+     * SYNTAXE : linear-gradient(angle, couleur1 position, couleur2 position)
+     * 
+     * 135deg : angle du dégradé (diagonal)
+     * - 0deg = de bas en haut
+     * - 90deg = de gauche à droite
+     * - 135deg = diagonal
+     * - 180deg = de haut en bas
+     * 
+     * #667eea 0% : violet clair au début
+     * #764ba2 100% : violet foncé à la fin
+     */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    color: white;
+
+    /* 
+     * padding: 100px 20px
+     * 100px en haut et bas, 20px à gauche et droite
+     */
+    padding: 100px 20px;
+
+    /* Centre le texte horizontalement */
+    text-align: center;
+}
+
+/**
+ * TITRE H2 DANS LE HERO
+ */
+#hero h2 {
+    /* 
+     * font-size - Taille de police
+     * 3rem = 3 × 16px = 48px (généralement)
+     */
+    font-size: 3rem;
+
+    /* Marge en bas pour espacer du paragraphe */
+    margin-bottom: 1rem;
+}
+
+/* ========================================
+   4. SECTIONS GÉNÉRALES
+   ======================================== */
+
+/**
+ * TOUTES LES SECTIONS
+ * Styles appliqués à toutes les <section>
+ */
+section {
+    /* Espacement interne généreux */
+    padding: 60px 20px;
+}
+
+/**
+ * PSEUDO-CLASSE :nth-child(even)
+ * Sélectionne les éléments pairs (2e, 4e, 6e, etc.)
+ * 
+ * AUTRES PSEUDO-CLASSES :
+ * - :nth-child(odd) : éléments impairs
+ * - :nth-child(3) : 3e élément
+ * - :first-child : premier élément
+ * - :last-child : dernier élément
+ */
+section:nth-child(even) {
+    /* Fond gris clair pour alterner avec les sections blanches */
+    background-color: #f4f4f4;
+}
+
+/**
+ * TITRES H2 DES SECTIONS
+ */
+h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+/* ========================================
+   5. COMPÉTENCES
+   ======================================== */
+/* ========================================
+   5. COMPÉTENCES
+   ======================================== */
+
+/**
+ * GRID DE COMPÉTENCES
+ * Grille responsive qui s'adapte automatiquement
+ */
+.skills-grid {
+    /* 
+     * display: grid - Active CSS Grid
+     * CSS Grid = système de mise en page bidimensionnel (lignes ET colonnes)
+     * 
+     * DIFFÉRENCE Flexbox vs Grid :
+     * - Flexbox : une dimension (ligne OU colonne)
+     * - Grid : deux dimensions (lignes ET colonnes)
+     */
+    display: grid;
+
+    /* 
+     * grid-template-columns - Définit les colonnes
+     * 
+     * repeat(auto-fit, minmax(250px, 1fr))
+     * 
+     * DÉCOMPOSITION :
+     * - repeat() : répète un motif
+     * - auto-fit : crée autant de colonnes que possible
+     * - minmax(250px, 1fr) : chaque colonne fait minimum 250px, maximum 1fr
+     * - 1fr (fraction) : prend une part égale de l'espace disponible
+     * 
+     * RÉSULTAT :
+     * - Écran large : 3-4 colonnes côte à côte
+     * - Écran moyen : 2 colonnes
+     * - Écran petit : 1 colonne
+     */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    /* 
+     * gap - Espace entre les éléments de la grille
+     * 2rem = ~32px d'espace entre chaque carte
+     */
+    gap: 2rem;
+
+    margin-top: 2rem;
+}
+
+/**
+ * CARTE DE COMPÉTENCE
+ * Chaque bloc de compétences (Front-End, Back-End, Outils)
+ */
+.skill-card {
+    background: white;
+    padding: 2rem;
+
+    /* 
+     * border-radius - Coins arrondis
+     * 10px = rayon de courbure des coins
+     * Plus le nombre est grand, plus c'est arrondi
+     */
+    border-radius: 10px;
+
+    /* 
+     * box-shadow - Ombre portée
+     * 
+     * SYNTAXE : box-shadow: offset-x offset-y blur spread color
+     * - 0 : pas de décalage horizontal
+     * - 4px : décalage vertical de 4px vers le bas
+     * - 6px : flou de 6px (blur)
+     * - rgba(0,0,0,0.1) : noir avec 10% d'opacité
+     * 
+     * rgba() = Rouge, Vert, Bleu, Alpha (transparence)
+     * rgba(0,0,0,0.1) = noir transparent (ombre légère)
+     */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/**
+ * TITRE H3 DANS LES CARTES DE COMPÉTENCES
+ */
+.skill-card h3 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+/**
+ * LISTE DANS LES CARTES DE COMPÉTENCES
+ */
+.skill-card ul {
+    /* Supprime les puces de la liste */
+    list-style: none;
+}
+
+/**
+ * ÉLÉMENTS DE LISTE DANS LES CARTES
+ */
+.skill-card li {
+    /* Espacement vertical */
+    padding: 0.5rem 0;
+
+    /* 
+     * border-bottom - Bordure en bas
+     * 1px = épaisseur
+     * solid = ligne continue (vs dashed, dotted, etc.)
+     * #eee = gris très clair
+     */
+    border-bottom: 1px solid #eee;
+}
+
+/* ========================================
+   6. PROJETS
+   ======================================== */
+/* ========================================
+   6. PROJETS
+   ======================================== */
+
+/**
+ * GRID DE PROJETS
+ * Même principe que skills-grid mais avec des cartes plus larges
+ */
+.projects-grid {
+    display: grid;
+    /* Minimum 300px par carte (au lieu de 250px pour les skills) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/**
+ * CARTE DE PROJET
+ */
+.project-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    /* 
+     * transition - Animation au survol
+     * Anime la propriété transform sur 0.3 secondes
+     */
+    transition: transform 0.3s;
+}
+
+/**
+ * ANIMATION AU SURVOL DES CARTES DE PROJET
+ */
+.project-card:hover {
+    /* 
+     * transform: translateY() - Déplace l'élément
+     * translateY(-5px) : déplace de 5px vers le haut
+     * 
+     * AUTRES TRANSFORMATIONS :
+     * - translateX() : déplacement horizontal
+     * - rotate() : rotation
+     * - scale() : zoom
+     * - skew() : inclinaison
+     */
+    transform: translateY(-5px);
+}
+
+/**
+ * TITRE H3 DANS LES CARTES DE PROJET
+ */
+.project-card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+/* ========================================
+   7. FORMULAIRE DE CONTACT
+   ======================================== */
+
+/**
+ * BALISE FORM
+ * Conteneur du formulaire
+ */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+
+    /* 
+     * display: flex avec flex-direction: column
+     * Empile les éléments verticalement
+     */
+    display: flex;
+    flex-direction: column;
+
+    /* Espace entre chaque champ du formulaire */
+    gap: 1rem;
+}
+
+/**
+ * CHAMPS INPUT ET TEXTAREA
+ * Styles pour tous les champs de saisie
+ */
+input,
+textarea {
+    /* Espacement interne pour le confort de saisie */
+    padding: 1rem;
+
+    /* 
+     * border - Bordure
+     * 1px = épaisseur
+     * solid = ligne continue
+     * #ddd = gris clair
+     */
+    border: 1px solid #ddd;
+
+    /* Coins arrondis */
+    border-radius: 5px;
+
+    /* Taille de la police */
+    font-size: 1rem;
+}
+
+/**
+ * BOUTONS
+ */
+button {
+    /* Couleur de fond violette */
+    background-color: #667eea;
+
+    /* Texte blanc */
+    color: white;
+
+    /* 
+     * padding: 1rem 2rem
+     * 1rem en haut et bas, 2rem à gauche et droite
+     */
+    padding: 1rem 2rem;
+
+    /* 
+     * border: none
+     * Supprime la bordure par défaut des boutons
+     */
+    border: none;
+
+    border-radius: 5px;
+
+    /* 
+     * cursor: pointer
+     * Change le curseur en main au survol
+     * Indique que l'élément est cliquable
+     */
+    cursor: pointer;
+
+    font-size: 1rem;
+
+    /* Animation du changement de couleur */
+    transition: background-color 0.3s;
+}
+
+/**
+ * BOUTON AU SURVOL
+ */
+button:hover {
+    /* Change la couleur de fond au survol */
+    background-color: #764ba2;
+}
+
+/* ========================================
+   8. INFORMATIONS DE CONTACT
+   ======================================== */
+/* ========================================
+   8. INFORMATIONS DE CONTACT
+   ======================================== */
+
+/**
+ * GRILLE D'INFORMATIONS DE CONTACT
+ * Affiche email, téléphone et localisation en cartes
+ */
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/**
+ * CARTE D'INFORMATION DE CONTACT
+ */
+.contact-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/**
+ * TITRE H3 DANS LES CARTES DE CONTACT
+ */
+.contact-card h3 {
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+/* ========================================
+   9. FOOTER (Pied de page)
+   ======================================== */
+
+/**
+ * BALISE FOOTER
+ */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* ========================================
+   10. RESPONSIVE DESIGN (Média Queries)
+   ======================================== */
+
+/**
+ * MEDIA QUERY - Styles conditionnels selon la taille d'écran
+ * 
+ * @media (max-width: 768px) signifie :
+ * "Applique ces styles SI la largeur de l'écran est inférieure ou égale à 768px"
+ * 
+ * 768px = point de rupture (breakpoint) classique pour tablettes/mobiles
+ * 
+ * BREAKPOINTS COURANTS :
+ * - 320px : petits mobiles
+ * - 768px : tablettes
+ * - 1024px : petits ordinateurs
+ * - 1440px : grands écrans
+ */
+@media (max-width: 768px) {
+
+    /**
+     * NAVIGATION SUR MOBILE
+     * On passe d'une disposition horizontale à verticale
+     */
+    nav {
+        /* 
+         * flex-direction: column
+         * Empile les éléments verticalement au lieu d'horizontalement
+         */
+        flex-direction: column;
+
+        /* Espace entre le titre et le menu */
+        gap: 1rem;
+    }
+
+    /**
+     * MENU DE NAVIGATION SUR MOBILE
+     */
+    nav ul {
+        /* Menu vertical sur mobile */
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /**
+     * TITRE H2 DU HERO SUR MOBILE
+     * Réduit la taille pour s'adapter aux petits écrans
+     */
+    #hero h2 {
+        /* 2rem au lieu de 3rem sur desktop */
+        font-size: 2rem;
+    }
+}
+
+/* ========================================
+   11. STYLES PERSONNALISÉS ADDITIONNELS
+   ======================================== */
+
+/**
+ * CONTENEUR DES LIENS DE RÉSEAUX SOCIAUX
+ */
+div.social-links {
+    margin-top: 1rem;
+    text-align: center;
+
+    /* 
+     * Flexbox pour aligner les logos horizontalement
+     */
+    display: flex;
+
+    /* Centre les liens horizontalement */
+    justify-content: center;
+
+    /* Espace entre chaque lien */
+    gap: 1.5rem;
+}
+
+/**
+ * ÉLÉMENT DE LOGO (lien avec icône)
+ */
+.logo-item {
+    /* Flexbox pour aligner l'image et le texte */
+    display: flex;
+    align-items: center;
+
+    /* Supprime le soulignement du lien */
+    text-decoration: none;
+
+    /* Couleur violette */
+    color: #667eea;
+}
+
+/**
+ * IMAGE DE LOGO
+ */
+.logo {
+    /* 
+     * width: auto - Largeur automatique
+     * Garde les proportions de l'image
+     */
+    width: auto;
+
+    /* Hauteur fixe de 24px */
+    height: 24px;
+
+    /* Marge à droite pour espacer du texte */
+    margin-right: 8px;
+}
