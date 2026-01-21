@@ -19,4 +19,19 @@ class HomePageController extends Controller
             'currentPage' => 'contact',
         ]);
     }
+
+    public function login()
+    {
+        return view('pages.auth.login');
+    }
+
+    public function signup()
+    {
+        return view('pages.auth.signup');
+    }
+
+    public function dashboard()
+    {
+        return view('pages.dashboard.index');
+    }
 }
