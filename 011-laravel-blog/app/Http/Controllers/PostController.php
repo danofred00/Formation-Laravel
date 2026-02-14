@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -12,10 +13,16 @@ class PostController extends Controller
      */
     public function index()
     {
-        // recuperer les posts propre a lutilisateur connecter
+        // recuperer l utilisateur connectee
+        $user = Auth::user();
+
+        // recuperer les posts propre a l'utilisateur connecter
+        $posts = Post::where('user_id', '=', $user->id)->get();
 
         // retourner la vue avec les posts
-        return view('pages.dashboard.posts.index');
+        return view('pages.dashboard.posts.index', [
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -65,8 +72,12 @@ class PostController extends Controller
      * Supprimer un post et rediriger l utilisateur vers la liste
      * des posts disponible
      */
-    public function destroy()
+    public function destroy(Post $post)
     {
+        // supprimer le post de la base de donnees
+        // DELETE from `posts` WHERE `id` = 'post_id';
+        $post->delete();
 
+        return back()->with('success', 'Post supprimer avec succes!');
     }
 }
