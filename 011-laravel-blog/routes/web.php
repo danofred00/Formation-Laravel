@@ -25,13 +25,15 @@ Route::middleware(['auth', 'auth.session'])->group(function () {
     // GET /dashboard/posts -> lister les posts
     Route::get('/posts', [PostController::class, 'index']);
     Route::post("/posts", [PostController::class, 'store']);
+
+    // PUT /dashboard/posts/post_Id -> Mettre a jour un post
+    Route::put("/posts/{post}", [PostController::class, 'update']);
     
     // DELETE /dashboard/posts/post_Id -> supprimer un post
     Route::delete("/posts/{post}", [PostController::class, 'destroy']);
 
     // GET /dashboard/posts/create -> creer un post
     // GET /dashboard/posts/{postId} -> Acceder a un post
-    // GET /dashboard/posts/{postId}/edit -> editer un post
     // DELETE /dashboard/posts/{postId}
 });
 

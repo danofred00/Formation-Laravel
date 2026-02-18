@@ -1,9 +1,5 @@
 @extends('layouts.dashboard')
 
-@php
-    
-@endphp
-
 @section('content')
     <div class="d-flex flex-row justify-content-between align-items-center mb-3">
         <h1>Mes Articles ({{ count($posts) }})</h1>
@@ -37,15 +33,19 @@
             @foreach ($posts as $post)
                 <!-- Affichage d'un article -->
                 <div class="card mb-3" style="width: 18rem;">
+                    
                     @if(!is_null($post->image))
                         <img src="{{ '/storage/' . $post->image }}" class="card-img-top" alt="text-alternatif" />
                     @endif
+
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <p class="card-text">{{ $post->content }}</p>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-primary" href="#">Voir</a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view-post-modal-{{ $post->id }}">
+                            Voir
+                        </button>
                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal-{{ $post->id }}">
                             Supprimer
                         </button>
@@ -78,41 +78,28 @@
 
                     </div>
                 </div>
+
+                <!-- Modal d'edition -->
+                @include('components.post-modal', [
+                    'isCreate'  => false,
+                    'formId'    => 'view-post-form-' . $post->id,
+                    'id'        => 'view-post-modal-' . $post->id,
+                    'post'      => $post,
+                    'modalTitle'    => 'Article #' . $post->id,
+                    'actionUrl' => '/dashboard/posts/' . $post->id,
+                    'encType'   => ''
+                ])
             @endforeach
         </div>
     </div>
 
     <!-- Modal de Creation -->
-    <div class="modal fade" id="create-post-modal" tabindex="-1" aria-labelledby="createPostModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createPostModalLabel">Creer un article</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="create-post-form" method="POST" action="" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="post-title" class="col-form-label">Titre de l'article:</label>
-                        <input type="text" class="form-control" name="title" id="post-title" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="post-content" class="col-form-label">Contenu de l'article:</label>
-                        <textarea class="form-control" name="content" id="post-content" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Image de l'article:</label>
-                        <input class="form-control" type="file" id="formFile" name="image">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="submit" form="create-post-form" class="btn btn-primary">Sauvegarder</button>
-            </div>
-            </div>
-        </div>
-    </div>
+    @include('components.post-modal', [
+        'isCreate'  => true,
+        'formId'    => 'create-post-form',
+        'id'        => 'create-post-modal',
+        'actionUrl' => '',
+        'encType'   => 'multipart/form-data'
+    ])
 
 @endsection

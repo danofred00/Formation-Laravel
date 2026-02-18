@@ -70,9 +70,25 @@ class PostController extends Controller
 
     /**
      * Mettre a jour un post et notifier l utilisateur
+     * // /dashboard/posts/{post}    => Post $post
      */
-    public function update()
-    {}
+    public function update(Request $request, Post $post)
+    {
+        // valider la requete
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content'   => 'required|string'
+        ]);
+
+        // mettre a jour le post
+        $post->update([
+            'title'     => $request->get('title'),
+            'content'   => $request->get('content')
+        ]);
+
+        // renvoyer la reponse
+        return back()->with('success', "Le post {$post->id} a ete modifier avec success");
+    }
 
     /**
      * Supprimer un post et rediriger l utilisateur vers la liste
