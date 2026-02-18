@@ -37,6 +37,9 @@
             @foreach ($posts as $post)
                 <!-- Affichage d'un article -->
                 <div class="card mb-3" style="width: 18rem;">
+                    @if(!is_null($post->image))
+                        <img src="{{ '/storage/' . $post->image }}" class="card-img-top" alt="text-alternatif" />
+                    @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <p class="card-text">{{ $post->content }}</p>
@@ -79,7 +82,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal de Creation -->
     <div class="modal fade" id="create-post-modal" tabindex="-1" aria-labelledby="createPostModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -88,7 +91,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="create-post-form" method="POST" action="">
+                <form id="create-post-form" method="POST" action="" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="post-title" class="col-form-label">Titre de l'article:</label>
@@ -97,6 +100,10 @@
                     <div class="mb-3">
                         <label for="post-content" class="col-form-label">Contenu de l'article:</label>
                         <textarea class="form-control" name="content" id="post-content" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Image de l'article:</label>
+                        <input class="form-control" type="file" id="formFile" name="image">
                     </div>
                 </form>
             </div>

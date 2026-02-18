@@ -38,17 +38,23 @@ class PostController extends Controller
     public function store(Request $request) {
         // valider les donnees du formulaire
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title'   => 'required|string|max:255',
             'content' => 'required|string',
+            'image'   => 'required|image'
         ]);
 
         $user = $request->user();
 
-        // creer le post en base de donnees
+        // stocker l'image sur le server
+        $image = $request->file('image');
+        $path = $image->store('posts/images', 'public');
+
+        // creer le post en base de donnees en ajoutant le champ image
         $post = new Post([
             'title' => $request->get('title'),
             'content' => $request->get('content'),
             'user_id' => $user->id,
+            'image' => $path
         ]);
         $post->save();
 
